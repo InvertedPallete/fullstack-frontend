@@ -1,38 +1,34 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { Box, IconButton, useMediaQuery } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
+import Filters from "./components/Filters";
+import PortfolioTable from "./components/PortfolioTable";
+import UploadDocument from "./components/UploadDocument";
 
-const API_URL = "https://your-backend-url.com"; // Replace with actual backend URL
-
-function App() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${API_URL}/items/`)
-      .then(response => setItems(response.data))
-      .catch(error => console.error(error));
-  }, []);
+const App = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div>
-      <h1>Data Table</h1>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Category</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map(item => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.category}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <Box sx={{ display: "flex" }}>
+      {isMobile && (
+        <IconButton onClick={() => setSidebarOpen(true)}>
+          <MenuIcon />
+        </IconButton>
+      )}
+
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setSidebarOpen(false)} />
+
+      <Box sx={{ flexGrow: 1, padding: isMobile ? 2 : 3 }}>
+        <Navbar />
+        <Filters />
+        <PortfolioTable />
+        <UploadDocument />
+      </Box>
+    </Box>
   );
-}
+};
 
 export default App;
