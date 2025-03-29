@@ -14,7 +14,17 @@ This project is a **Portfolio Dashboard** built using **React.js** and **Materia
 
 ## 📁 Folder Structure  
 
-frontend/ │── public/ # Static assets │── src/ │ ├── components/ # Reusable UI components │ │ ├── Navbar.js # Navigation bar │ │ ├── PortfolioTable.js # Data table with filtering & bucketing │ │ ├── UploadForm.js # File upload component │ ├── App.js # Main app component │ ├── index.js # Entry point │── package.json # Dependencies and scripts │── README.md # Project documentation
+frontend/ 
+│── public/ # Static assets 
+│── src/  
+        ├── components/ # Reusable UI components  
+          ├── Navbar.js # Navigation bar
+          ├── PortfolioTable.js # Data table with filtering & bucketing
+          ├── UploadForm.js # File upload component
+        ├── App.js # Main app component 
+        ├── index.js # Entry point 
+│── package.json # Dependencies and scripts 
+│── README.md # Project documentation
 
 
 ## 🎨 Features  
