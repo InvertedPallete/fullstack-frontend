@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const API_URL = "https://your-backend-url.com"; // Replace with actual backend URL
 
 function App() {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    axios.get(`${API_URL}/items/`)
+      .then(response => setItems(response.data))
+      .catch(error => console.error(error));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Data Table</h1>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map(item => (
+            <tr key={item.id}>
+              <td>{item.name}</td>
+              <td>{item.category}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
